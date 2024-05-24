@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message ProductRequest {
+  int32 id = 1;
+}
+
+message ProductResponse {
+  int32 available_quantity = 1;
+}
+
+service ProductService {
+  rpc GetAvailableQuantity(ProductRequest) returns (ProductResponse);
+}
