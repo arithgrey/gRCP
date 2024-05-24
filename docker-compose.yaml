@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  grpc_server:
+    build: 
+      context: ./server
+      #dockerfile: Dockerfile
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./server:/app
+
+  grpc_client:
+    build: 
+      context: ./client
+      #dockerfile: Dockerfile
+    volumes:
+      - ./client:/app
+    depends_on:
+      - grpc_server
+      
+    entrypoint: sh -c "while true; do sleep 1000; done"
